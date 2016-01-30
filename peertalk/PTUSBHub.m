@@ -482,7 +482,7 @@ static NSString *kPlistPacketTypeConnect = @"Connect";
     uint32_t upacket_len = 0;
     char *buffer = NULL;
     size_t buffer_size = 0;
-    PT_PRECISE_LIFETIME_UNUSED dispatch_data_t map_data = dispatch_data_create_map(data, (const void **)&buffer, &buffer_size); // objc_precise_lifetime guarantees 'map_data' isn't released before memcpy has a chance to do its thing
+    dispatch_data_t map_data = dispatch_data_create_map(data, (const void **)&buffer, &buffer_size);
     assert(buffer_size == sizeof(ref_upacket.size));
     memcpy((void *)&(upacket_len), (const void *)buffer, buffer_size);
 #if PT_DISPATCH_RETAIN_RELEASE
@@ -512,7 +512,7 @@ static NSString *kPlistPacketTypeConnect = @"Connect";
       // Copy read bytes onto our usbmux_packet_t
       char *buffer = NULL;
       size_t buffer_size = 0;
-      PT_PRECISE_LIFETIME_UNUSED dispatch_data_t map_data = dispatch_data_create_map(data, (const void **)&buffer, &buffer_size);
+      dispatch_data_t map_data = dispatch_data_create_map(data, (const void **)&buffer, &buffer_size);
       assert(buffer_size == upacket->size - offset);
       memcpy(((void *)(upacket))+offset, (const void *)buffer, buffer_size);
 #if PT_DISPATCH_RETAIN_RELEASE

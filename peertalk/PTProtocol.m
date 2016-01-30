@@ -213,7 +213,7 @@ static void _release_queue_local_protocol(void *objcobj) {
       PTFrame *frame = NULL;
       size_t size = 0;
       
-      PT_PRECISE_LIFETIME dispatch_data_t contiguousData = dispatch_data_create_map(allData, (const void **)&frame, &size); // precise lifetime guarantees bytes in frame will stay valid till the end of scope
+      dispatch_data_t contiguousData = dispatch_data_create_map(allData, (const void **)&frame, &size);
 #if PT_DISPATCH_RETAIN_RELEASE
       dispatch_release(allData);
 #endif
@@ -282,7 +282,7 @@ static void _release_queue_local_protocol(void *objcobj) {
       
       uint8_t *buffer = NULL;
       size_t bufferSize = 0;
-      PT_PRECISE_LIFETIME dispatch_data_t contiguousData = NULL;
+      dispatch_data_t contiguousData = NULL;
       
       if (allData) {
         contiguousData = dispatch_data_create_map(allData, (const void **)&buffer, &bufferSize);
@@ -371,7 +371,7 @@ static void _release_queue_local_protocol(void *objcobj) {
   }
   uint8_t *buffer = NULL;
   size_t bufferSize = 0;
-  PT_PRECISE_LIFETIME dispatch_data_t contiguousData = dispatch_data_create_map(data, (const void **)&buffer, &bufferSize);
+  dispatch_data_t contiguousData = dispatch_data_create_map(data, (const void **)&buffer, &bufferSize);
   if (!contiguousData) {
     return nil;
   }
@@ -410,7 +410,7 @@ static void _release_queue_local_protocol(void *objcobj) {
   }
   uint8_t *buffer = NULL;
   size_t bufferSize = 0;
-  PT_PRECISE_LIFETIME dispatch_data_t contiguousData = dispatch_data_create_map(data, (const void **)&buffer, &bufferSize);
+  dispatch_data_t contiguousData = dispatch_data_create_map(data, (const void **)&buffer, &bufferSize);
   if (!contiguousData) {
     return nil;
   }
